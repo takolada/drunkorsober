@@ -1,0 +1,9 @@
+streamlit
+keras
+tensorflow
+dill
+numpy
+Pillow
+opencv-python-headless
+joblib
+requests
