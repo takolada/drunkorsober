@@ -58,6 +58,6 @@ if uploaded_file is not None:
             # If Drunk, send Telegram alert
             if label_str == "Drunk":
                 message = f"⚠️ Alert: Drunk person detected in your car"
-                bot_token = "7709278009:AAHbmq9cd2Enmd_5UNGDSgEWNUtyBS8Pd10"
-                chat_id = "6407815048"
+                bot_token = st.secrets["telegram"]["bot_token"]
+                chat_id = st.secrets["telegram"]["chat_id"]
                 send_telegram_message(message, bot_token, chat_id)
