@@ -80,7 +80,7 @@ class VideoTransformer(VideoTransformerBase):
         if sum(self.predictions) >= DRUNK_THRESHOLD:
             now = time.time()
             if now - self.last_alert_time > COOLDOWN_SECONDS:
-                send_telegram_alert("🚨 ALERT: Drunk person detected in live webcam!", image=img)
+                send_telegram_alert("🚨 ALERT: Drunk person detected in your car!", image=img)
                 self.last_alert_time = now
                 self.alert_sent = True
         else:
