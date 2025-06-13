@@ -16,6 +16,25 @@ def send_telegram_message(message: str, bot_token: str, chat_id: str):
     except Exception as e:
         st.error(f"Telegram Error: {e}")
 
+def send_telegram_photo(image: Image.Image, caption: str, bot_token: str, chat_id: str):
+    url = f"https://api.telegram.org/bot{bot_token}/sendPhoto"
+    
+    # Convert PIL Image to byte stream
+    import io
+    img_byte_array = io.BytesIO()
+    image.save(img_byte_array, format='JPEG')
+    img_byte_array.seek(0)
+    
+    files = {'photo': img_byte_array}
+    data = {'chat_id': chat_id, 'caption': caption}
+    
+    try:
+        response = requests.post(url, files=files, data=data)
+        if response.status_code != 200:
+            st.warning(f"Telegram image send failed: {response.text}")
+    except Exception as e:
+        st.error(f"Telegram Photo Error: {e}")
+
 # Load model
 model = joblib.load('best_modelCNN.joblib')
 
@@ -61,3 +80,4 @@ if uploaded_file is not None:
                 bot_token = st.secrets["telegram"]["bot_token"]
                 chat_id = st.secrets["telegram"]["chat_id"]
                 send_telegram_message(message, bot_token, chat_id)
+                send_telegram_photo(Image.fromarray(face_img), "Detected face", bot_token, chat_id)
