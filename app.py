@@ -90,8 +90,8 @@ class VideoTransformer(VideoTransformerBase):
 
 
 # Streamlit interface
-st.title("🧠 Real-Time Drunk Detection with Telegram Alert")
-st.markdown("Drunk detection runs every frame. Telegram alert triggers if **≥10 of last 30 frames** are drunk.")
+st.title("CekMabuk AI")
+st.markdown("LAI25-SM008")
 
 webrtc_streamer(
     key="live-drunk-detector",
