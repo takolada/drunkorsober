@@ -45,7 +45,7 @@ if uploaded_file is not None:
             st.image(face_img, caption=f"Wajah #{i+1}", width=150)
             
             # Preprocessing
-            face_resized = Image.fromarray(face_img).resize((224, 224))
+            face_resized = Image.fromarray(face_img).convert('RGB').resize((224, 224))
             face_array = np.array(face_resized) / 255.0
             face_array = face_array.reshape(1, 224, 224, 3)
             
